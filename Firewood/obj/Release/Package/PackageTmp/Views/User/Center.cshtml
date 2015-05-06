@@ -1,0 +1,16 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "个人中心 柴火 | 西南财经大学学生活动发布平台";
+    ViewBag.Css = new string[]{
+        "/Firewood/css/form.min.css"
+    };
+}
+<div class="row fw-border form-style">
+    <h3>个人中心</h3>
+    <div class="col-xs-6 text-center">
+        <a class="btn btn-info" href="/Firewood/User/UpdateInfo" role="button">完善个人信息</a>
+    </div>
+    <div class="col-xs-6 text-center">
+        <a class="btn btn-success" href="/Firewood/User/ShowAct" role="button">查看我想参加的活动</a>
+    </div>
+</div>

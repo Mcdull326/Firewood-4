@@ -1,0 +1,73 @@
+﻿@{
+    Layout = "~/Views/Shared/Org_Layout.cshtml";
+    ViewBag.Title = "社团/组织注册 柴火 | 西南财经大学学生活动发布平台";
+    ViewBag.Css = new string[]{
+        "/Firewood/css/form.min.css"
+    };
+}
+<div class="row fw-border form-style">
+    <h3>社团/组织注册</h3>
+    <form class="form-horizontal" action="/Firewood/Org/IsRegister" method="post" role="form" enctype="multipart/form-data">
+        <div class="form-group">
+            <label class="col-sm-4 control-label">社团/组织名称</label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control" name="orgname" placeholder="登录时的用户名" required />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label">密码</label>
+            <div class="col-sm-8">
+                <input type="password" class="form-control" name="password1" required />
+                <p class="help-block"></p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label">确认密码</label>
+            <div class="col-sm-8">
+                <input type="password" class="form-control" name="password2" required />
+                <p class="help-block"></p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label">社团/组织logo</label>
+            <div class="col-sm-8">
+                <input type="file" name="orgpic" required />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label">所属部门</label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control" name="orgdepartment" required />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label">负责人姓名</label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control" name="orgprincipal" required />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label">负责人手机号</label>
+            <div class="col-sm-8">
+                <input type="number" class="form-control" name="orgtel" required />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label">社团/组织联系方式</label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control" name="orgcontact" required />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label">简介</label>
+            <div class="col-sm-8">
+                <textarea rows="5" type="text" class="form-control" name="orgintro" placeholder="500字以内" required maxlength="500"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-12">
+                <button type="submit" class="btn btn-warning btn-lg btn-block" id="org-reg-btn">注册</button>
+            </div>
+        </div>
+    </form>
+</div>

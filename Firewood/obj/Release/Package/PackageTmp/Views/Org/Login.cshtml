@@ -1,0 +1,32 @@
+﻿@{
+    Layout = "~/Views/Shared/Org_Layout.cshtml";
+    ViewBag.Title = "社团/组织登录 柴火 | 西南财经大学学生活动发布平台";
+    ViewBag.Css = new string[]{
+        "/Firewood/css/form.min.css"
+    };
+}
+<div class="row fw-border form-style">
+    <h3>社团/组织登录</h3>
+    <form class="form-horizontal" onsubmit="return false">
+        <div class="form-group">
+            <label class="col-sm-3 control-label">用户名</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" id="orgname" required />
+                <p class="help-block"></p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">密码</label>
+            <div class="col-sm-9">
+                <input type="password" class="form-control" id="password" required />
+                <p class="help-block"></p>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-12">
+                <a class="btn btn-warning btn-lg btn-block" id="org-log-btn" style="margin-bottom:10px">登录</a>
+                <a href="/Firewood/Org/Register">没有账号？去注册</a>
+            </div>
+        </div>
+    </form>
+</div>

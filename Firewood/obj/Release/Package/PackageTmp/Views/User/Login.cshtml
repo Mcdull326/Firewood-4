@@ -1,0 +1,36 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "登录 柴火 | 西南财经大学学生活动发布平台";
+    ViewBag.Css = new string[]{
+        "/Firewood/css/form.min.css"
+    };
+}
+<div class="row fw-border form-style">
+    <h3>用户登录</h3>
+    <form class="form-horizontal" onsubmit="return false">
+        <div class="form-group">
+            <label class="col-sm-3 control-label">学号</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" id="usernum" required />
+                <p class="help-block"></p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">密码</label>
+            <div class="col-sm-9">
+                <input type="password" class="form-control" id="password" required />
+                <p class="help-block"></p>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-4 col-sm-6 col-xs-6 col-md-offset-1 control-label forget-pwd">
+                <a href="/Firewood/User/CheckNum" title="忘记密码">忘记密码</a>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-12">
+                <button type="submit" class="btn btn-warning btn-lg btn-block" id="user-log-btn">登录</button>
+            </div>
+        </div>
+    </form>
+</div>

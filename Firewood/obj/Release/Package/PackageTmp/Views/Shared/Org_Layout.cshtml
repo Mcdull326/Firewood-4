@@ -1,0 +1,141 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/css/main.min.css">
+    @foreach (var i in ViewBag.Css ?? new string[] { })
+    {
+        <link href="@i" rel="stylesheet" />
+    }
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script src="@Url.Content("~/js/modernizr-2.8.3.js")"></script>
+</head>
+
+<body>
+    <!--Top-->
+    <ul class="hidden-xs hidden-sm nav-top">
+        <li>
+            <a href="http://www.ghy.cn" title="光华园">光华园</a>
+        </li>
+        <li>
+            <a href="http://www.ghy.cn/swufenews" title="新闻">新闻</a>
+        </li>
+        <li>
+            <a href="http://www.ghy.cn/idea08" title="思想">思想</a>
+        </li>
+        <li>
+            <a href="http://www.ghy.cn/study09" title="学习">学习</a>
+        </li>
+        <li>
+            <a href="http://www.ghy.cn/life" title="生活">生活</a>
+        </li>
+        <li>
+            <a href="http://www.ghy.cn/lit08" title="文苑">文苑</a>
+        </li>
+        <li>
+            <a href="http://music.ghy.cn" title="音乐">音乐</a>
+        </li>
+        <li>
+            <a href="http://movie.ghy.cn" title="电影">电影</a>
+        </li>
+        <li>
+            <a href="http://soft.ghy.cn" title="软件">软件</a>
+        </li>
+        <li>
+            <a href="http://bbs.ghy.cn" title="草堂茗香">草堂茗香</a>
+        </li>
+    </ul>
+    <!--Mobile Head and Nav-->
+    <nav class="visible-xs-block navbar navbar-fw">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">柴火后台管理</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="#">文娱</a></li>
+                    <li><a href="#">财经</a></li>
+                    <li><a href="#">体育</a></li>
+                    <li><a href="#">创意</a></li>
+                    <li><a href="#">其他</a></li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+    <!--Main-->
+    <div class="container">
+        <!--Head-->
+        <div class="hidden-xs hidden-sm row head">
+            <div class="col-md-9">
+                <a href="">
+                    <img src="http://@Request.Url.Host:@Request.Url.Port/Firewood/img/org-logo.png" alt="">
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        @RenderBody()
+    </div>
+    <!--Footer-->
+    <footer class="hidden-xs hidden-sm">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <div id="ghy-logo"></div>
+                    <p>Copyright ©2001-2015 GHY.cn All rights reserved. 蜀ICP备07004602号</p>
+                    <p>西南财经大学党委宣传统战部 前进动力工作室</p>
+                </div>
+                <div class="col-md-4" id="footer-right">
+                    <div id="footer-right-left">
+                        <p>
+                            <span>Phone:</span>
+                        </p>
+                        <p>
+                            <span>Email:</span>
+                        </p>
+                        <p>
+                            <span>Address:</span>
+                        </p>
+                    </div>
+                    <div>
+                        <p>028-87092700</p>
+                        <p>ghyers@ghy.cn</p>
+                        <p>腾骧楼422室 前进动力工作室</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--Mobile Footer-->
+    <footer class="hidden-md hidden-lg mobile-footer">
+        <div class="container">
+            <p>Copyright ©2001-2015 GHY.cn All Rights Reserved.</p>
+            <p>tel:028-87092700 email:ghyers@ghy.cn</p>
+        </div>
+    </footer>
+    <script src="@Url.Content("~/js/main.min.js")"></script>
+    @foreach (var i in ViewBag.Js ?? new string[] { })
+    {
+        <script src="@i"></script>
+    }
+</body>
+</html>

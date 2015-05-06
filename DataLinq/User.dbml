@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="ghyusers" Class="UserDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=127.0.0.1;Initial Catalog=ghyusers;Persist Security Info=True;User ID=sa" SettingsObjectName="DataLinq.Properties.Settings" SettingsPropertyName="ghyusersConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.[user]" Member="user">
+    <Type Name="user">
+      <Column Name="uID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="uNum" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="uName" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="uPwd" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="uMail" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="uGrade" Type="System.String" DbType="NVarChar(4)" CanBeNull="true" />
+      <Column Name="uSex" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="uTel" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="uPic" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="uIP" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="registerTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="trueName" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="state" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="lastLogin" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.role" Member="role">
+    <Type Name="role">
+      <Column Name="roleID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="roleName" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.[user-role]" Member="user_role">
+    <Type Name="user_role">
+      <Column Name="uID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="roleID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="state" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+</Database>

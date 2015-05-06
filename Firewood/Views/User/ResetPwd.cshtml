@@ -1,0 +1,32 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "重置密码 柴火 | 西南财经大学学生活动发布平台";
+    ViewBag.Css = new string[]{
+        "/Firewood/css/form.min.css"
+    };
+}
+<div class="row fw-border form-style">
+    <h3>重置密码</h3>
+    <form class="form-horizontal" onsubmit="return false">
+        <h4 class="text-center">您的昵称：@ViewBag.UserName</h4>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">新密码</label>
+            <div class="col-sm-9">
+                <input type="password" class="form-control" id="password1" required />
+                <p class="help-block"></p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">确认密码</label>
+            <div class="col-sm-9">
+                <input type="password" class="form-control" id="password2" required />
+                <p class="help-block"></p>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-12">
+                <button type="submit" class="btn btn-warning btn-lg btn-block" id="user-reset-btn">确定</button>
+            </div>
+        </div>
+    </form>
+</div>

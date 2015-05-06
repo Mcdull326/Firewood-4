@@ -1,0 +1,9 @@
+F:\visual studio 2013\Projects\Firewood-4\Firewood-4\BLL\bin\Release\BLL.dll
+F:\visual studio 2013\Projects\Firewood-4\Firewood-4\BLL\bin\Release\BLL.pdb
+F:\visual studio 2013\Projects\Firewood-4\Firewood-4\BLL\bin\Release\DAL.dll
+F:\visual studio 2013\Projects\Firewood-4\Firewood-4\BLL\bin\Release\DataLinq.dll
+F:\visual studio 2013\Projects\Firewood-4\Firewood-4\BLL\bin\Release\DAL.pdb
+F:\visual studio 2013\Projects\Firewood-4\Firewood-4\BLL\bin\Release\DataLinq.pdb
+F:\visual studio 2013\Projects\Firewood-4\Firewood-4\BLL\obj\Release\BLL.csprojResolveAssemblyReference.cache
+F:\visual studio 2013\Projects\Firewood-4\Firewood-4\BLL\obj\Release\BLL.dll
+F:\visual studio 2013\Projects\Firewood-4\Firewood-4\BLL\obj\Release\BLL.pdb
