@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using DAL;
+using BLL;
 using DataLinq;
 
 namespace Test
@@ -13,15 +14,9 @@ namespace Test
     {
         static void Main(string[] args)
         {
-            DAL_User userDAL = new DAL_User();
-            user user = new user();
-            user.uNum = "41211017";
-            user.uMail = "zhzq326@ghy.cn";
-            user.uTel = "15708428703";
-            user.uGrade = "2012";
-            user.uSex = 1;
-            user.trueName = "";
-            Console.WriteLine(userDAL.UpdateUserInfo(user));
+            BLL_Org orgBLL = new BLL_Org();
+
+            Console.WriteLine(orgBLL.Login("光华园网站","123").OrgName);
         }
     }
 }

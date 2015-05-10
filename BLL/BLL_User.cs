@@ -25,9 +25,18 @@ namespace BLL
         {
             usernum = usernum != null ? usernum : "";
             password = password != null ? Md5.MD5_encrypt(password) : "";
-            if (userDAL.UpdateIPTime(usernum))//更新IP和登录时间
+
+            user user = userDAL.LoginByNum(usernum, password);
+            if (user != null)
             {
-                return userDAL.LoginByNum(usernum, password);
+                if (userDAL.UpdateIPTime(usernum))//更新IP和登录时间
+                {
+                    return user;
+                }
+                else
+                {
+                    return null;
+                }
             }
             else
             {

@@ -20,6 +20,7 @@ namespace Firewood.Controllers
     public class OrgController : Controller
     {
         BLL_Org orgBLL = new BLL_Org();
+        BLL_Act actBLL = new BLL_Act();
 
         #region 判断是否登录
         public ActionResult IsLog(string view)
@@ -37,61 +38,26 @@ namespace Firewood.Controllers
                         if (org != null)
                         {
                             Session["Org"] = org;//写入session
-                            if (view.Equals(""))
-                            {
-                                return Redirect("/Firewood");
-                            }
-                            else
-                            {
-                                return View(view);
-                            }
-                        }
-                        else
-                        {
-                            if (view.Equals(""))
-                            {
-                                return View();
-                            }
-                            else
-                            {
-                                return Redirect("/Firewood/Org/Login");
-                            }
-                        }
-                    }
-                    else
-                    {
-                        if (view.Equals(""))
-                        {
-                            return View();
+                            return View(view);
                         }
                         else
                         {
                             return Redirect("/Firewood/Org/Login");
                         }
                     }
-                }
-                else
-                {
-                    if (view.Equals(""))
-                    {
-                        return View();
-                    }
                     else
                     {
                         return Redirect("/Firewood/Org/Login");
                     }
                 }
+                else
+                {
+                    return Redirect("/Firewood/Org/Login");
+                }
             }
             else
             {
-                if (view.Equals(""))
-                {
-                    return Redirect("/Firewood");
-                }
-                else
-                {
-                    return View(view);
-                }
+                return View(view);
             }
         }
         #endregion 判断是否登录
@@ -106,13 +72,19 @@ namespace Firewood.Controllers
         [HttpGet]
         public ActionResult Login()
         {
-            return IsLog("");
+            return View();
         }
 
         [HttpGet]
         public ActionResult Register()
         {
             return View();
+        }
+
+        [HttpGet]
+        public ActionResult Publish()
+        {
+            return IsLog("Publish");
         }
 
         #endregion 显示各种页面
@@ -130,15 +102,15 @@ namespace Firewood.Controllers
             org org = orgBLL.Login(orgname, password);
             if (org != null)
             {
-                Session["Org"] = org;//将user写入session
+                Session["Org"] = org;//将org写入session
 
-                HttpCookie cookieUser = new HttpCookie("OrgLog");
-                cookieUser.Value = orgname + "+" + Md5.MD5_encrypt(password);
-                cookieUser.Expires = System.DateTime.Now.AddDays(1);
-                Response.Cookies.Add(cookieUser);
+                HttpCookie cookieOrg = new HttpCookie("OrgLog");
+                cookieOrg.Value = orgname + "+" + Md5.MD5_encrypt(password);
+                cookieOrg.Expires = System.DateTime.Now.AddDays(1);
+                Response.Cookies.Add(cookieOrg);
 
                 Response.StatusCode = 200;
-                return Json(new { username = orgname });
+                return Json(new { orgname = orgname });
             }
             else
             {
@@ -170,7 +142,7 @@ namespace Firewood.Controllers
             }
             else
             {
-                string path = GetPath(orgname);
+                string path = GetPath(orgname,"OrgImg");
                 string filename = path + DateTime.Now.Ticks + ".png";
                 try
                 {
@@ -192,7 +164,7 @@ namespace Firewood.Controllers
                 org org = new org();
                 org.OrgName = orgname;
                 org.OrgPwd = orgpwd;
-                org.OrgPic = path;
+                org.OrgPic = filename;
                 org.OrgPrincipal = orgform.orgprincipal.Trim();
                 org.OrgTel = orgform.orgtel.Trim();
                 org.OrgDepartment = orgform.orgdepartment.Trim();
@@ -201,12 +173,79 @@ namespace Firewood.Controllers
                 if (orgBLL.Register(org))//上传成功
                 {
                     Response.StatusCode = 200;
-                    return Content("<script type='text/javascript'>alert('上传成功！');self.location='../UpLoad/Index';</script>");
+                    return Content("<script type='text/javascript'>alert('上传成功！');self.location='../Org/Index';</script>");
                 }
                 else
                 {
                     Response.StatusCode = 500;
-                    return Content("<script type='text/javascript'>alert('注册异常！');self.location='../UpLoad/Index';</script>");
+                    return Content("<script type='text/javascript'>alert('注册异常！');history.go(-1);</script>");
+                }
+            }
+        }
+
+        [HttpPost]
+        public ActionResult IsPublish(PublishForm publicform, HttpPostedFileBase actpic)
+        {
+            string actname = publicform.actname;
+            string class1 = publicform.class1;
+            string class2 = publicform.class2;
+            org org = Session["Org"] as org;
+
+            if(actBLL.IsActNameExist(actname))
+            {
+                Response.StatusCode = 200;
+                return Content("<script type='text/javascript'>alert('活动名称重复！');history.go(-1);</script>");
+            }
+            else
+            {
+                string path = GetPath(actname,"ActImg");
+                string filename = path + DateTime.Now.Ticks + ".png";
+                try
+                {
+                    using (var stream = actpic.InputStream)
+                    {
+                        Image img = Image.FromStream(stream);
+                        var bmp = ResizeImg(img);
+                        if (!System.IO.Directory.Exists(path))
+                            System.IO.Directory.CreateDirectory(path);
+                        bmp.Save(filename, ImageFormat.Png);
+                    }
+                }
+                catch
+                {
+                    Response.StatusCode = 200;
+                    return new EmptyResult();
+                }
+
+                if (!class1.Equals("比赛") && !class1.Equals("讲座"))
+                {
+                    class2 = "";
+                }
+
+                activity act = new activity();
+                act.ActName = actname;
+                act.Place = publicform.place;
+                act.Class1 = class1;
+                act.Class2 = class2;
+                act.BeginTime = publicform.begintime;
+                act.EndTime = publicform.endtime;
+                act.MoneyState = publicform.money.Equals("yes") ? 1 : 0;
+                act.ScoreState = publicform.score.Equals("yes") ? 1 : 0;
+                act.AwardState = publicform.award.Equals("yes") ? 1 : 0;
+                act.VoteState = publicform.vote.Equals("yes") ? 1 : 0;
+                act.OrgID = org.OrgID;
+                act.ActIntro = publicform.actintro;
+                act.ActPic = filename;
+
+                if (actBLL.AddActivity(act))
+                {
+                    Response.StatusCode = 200;
+                    return Content("<script type='text/javascript'>alert('发布成功！');location.href='/Firewood'</script>");
+                }
+                else
+                {
+                    Response.StatusCode = 200;
+                    return Content("<script type='text/javascript'>alert('发布异常！');</script>");
                 }
             }
         }
@@ -228,12 +267,14 @@ namespace Firewood.Controllers
             }
             return new Bitmap(input);
         }
-        private string GetPath(string orgname)
+        private string GetPath(string name,string foldername)
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append(Server.MapPath("/FirewoodImages/OrgImg/"));
-            sb.Append(orgname);
-            sb.Append(@"/");
+            sb.Append(Server.MapPath("/FirewoodImages/"));
+            sb.Append(foldername);
+            sb.Append(@"\");
+            sb.Append(name);
+            sb.Append(@"\");
             return sb.ToString();
         }
         #endregion

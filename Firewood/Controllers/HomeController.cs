@@ -41,6 +41,5 @@ namespace Firewood.Controllers
         {
             return IsLog();
         }
-
     }
 }

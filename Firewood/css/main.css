@@ -6616,6 +6616,9 @@ a:hover {
   text-decoration: none;
   color: #fbb04b;
 }
+.radio {
+  display: inline;
+}
 .nav-top {
   width: 100%;
   height: 35px;

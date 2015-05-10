@@ -1,12 +1,12 @@
-$(document).ready(function () {
-    //ÅĞ¶ÏÊÇ·ñµÇÂ¼
+ï»¿$(document).ready(function () {
+    //åˆ¤æ–­æ˜¯å¦ç™»å½•
     var username = getCookie("UserLog").split("+")[0];
     if (username.length > 0) {
         $("#before-log").hide();
         $("#after-log").show();
         $("#uname").text(username);
     }
-    //´Ócookie»ñÈ¡êÇ³Æ
+    //ä»cookieè·å–æ˜µç§°
     function getCookie(c_name) {
         if (document.cookie.length > 0) {
             c_start = document.cookie.indexOf(c_name + "=")
@@ -20,14 +20,14 @@ $(document).ready(function () {
         return "";
     }
 
-    //ÏÔÊ¾²Ëµ¥À¸
+    //æ˜¾ç¤ºèœå•æ 
     $(".user-btn,#nav-on").mouseover(function (event) {
         $("#nav-on").show();
     }).mouseout(function (event) {
         $("#nav-on").hide();
     });
 
-    //µÇÂ¼
+    //ç™»å½•
     $("#user-log-btn").click(function () {
         var sendData = {
             usernum: $.trim($("#usernum").val()),
@@ -54,7 +54,7 @@ $(document).ready(function () {
         });
     });
 
-    //×¢²á
+    //æ³¨å†Œ
     $("#user-reg-btn").click(function () {
         var sendData = {
             usernum: $.trim($("#usernum").val()),
@@ -93,7 +93,7 @@ $(document).ready(function () {
         });
     });
 
-    //Íü¼ÇÃÜÂë,ÑéÖ¤Ñ§ºÅ
+    //å¿˜è®°å¯†ç ,éªŒè¯å­¦å·
     $("#user-check-btn").click(function () {
         var sendData = {
             usernum: $.trim($("#usernum").val()),
@@ -124,7 +124,7 @@ $(document).ready(function () {
         });
     });
 
-    //ÖØÖÃÃÜÂë
+    //é‡ç½®å¯†ç 
     $("#user-reset-btn").click(function () {
         var sendData = {
             password1: $.trim($("#password1").val()),
@@ -154,14 +154,14 @@ $(document).ready(function () {
         });
     });
 
-    //ÍêÉÆ¸öÈËĞÅÏ¢
+    //å®Œå–„ä¸ªäººä¿¡æ¯
     $("#user-center-btn").click(function () {
         var sendData = {
             usernum: $.trim($("#re-num").val()),
             usermail: $.trim($("#re-mail").val()),
             usertel: $.trim($("#re-tel").val()),
             usergrade: $.trim($("#grade").val()),
-            usersex: $("#male").attr("checked") == "checked" ? "0" : "1",
+            usersex: $("#male")[0].checked == true ? "0" : "1",
             truename: $.trim($("#truename").val())
         };
         $.ajaxJsonPost({
@@ -191,8 +191,8 @@ $(document).ready(function () {
 
     });
 
-    //ÉçÍÅ/×éÖ¯µÇÂ¼
-    $("org-log-btn").click(function () {
+    //ç¤¾å›¢/ç»„ç»‡ç™»å½•
+    $("#org-log-btn").click(function () {
         var sendData = {
             orgname: $.trim($("#orgname").val()),
             password: $.trim($("#password").val())

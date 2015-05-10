@@ -31,37 +31,16 @@ namespace Firewood.Controllers
                         if (user != null)
                         {
                             Session["User"] = user;//写入session
-                            if (view.Equals(""))
-                            {
-                                return Redirect("/Firewood");
-                            }
-                            else
-                            {
-                                return View(view);
-                            }
-                        }
-                        else
-                        {
-                            if (view.Equals(""))
-                            {
-                                return View();
-                            }
-                            else
-                            {
-                                return Redirect("/Firewood/User/Login");
-                            }
-                        }
-                    }
-                    else
-                    {
-                        if (view.Equals(""))
-                        {
-                            return View();
+                            return Redirect("/Firewood");
                         }
                         else
                         {
                             return Redirect("/Firewood/User/Login");
                         }
+                    }
+                    else
+                    {
+                        return Redirect("/Firewood/User/Login");
                     }
                 }
                 else
@@ -99,7 +78,7 @@ namespace Firewood.Controllers
         [HttpGet]
         public ActionResult Login()
         {
-            return IsLog("");
+            return View();
         }
 
         /// <summary>
@@ -109,7 +88,7 @@ namespace Firewood.Controllers
         [HttpGet]
         public ActionResult Register()
         {
-            return View("Register");
+            return View();
         }
 
         /// <summary>
@@ -119,7 +98,7 @@ namespace Firewood.Controllers
         [HttpGet]
         public ActionResult CheckNum()
         {
-            return View("CheckNum");
+            return View();
         }
 
         /// <summary>

@@ -13,6 +13,23 @@ namespace Firewood
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            //picture pool
+            routes.MapRoute(
+                "PicPool",
+                "PicPool/Type/{type}/Id/{id}/Size/{size}",
+                new { controller = "PicPool", action = "Get" }
+            );
+            routes.MapRoute(
+                "PicPoolWidth",
+                "PicPool/Type/{type}/Id/{id}/Width/{width}",
+                new { controller = "PicPool", action = "Get" }
+            );
+            routes.MapRoute(
+                "PicPoolHeight",
+                "PicPool/Type/{type}/Id/{id}/Height/{height}",
+                new { controller = "PicPool", action = "Get" }
+            );
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}",

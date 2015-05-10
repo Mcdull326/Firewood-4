@@ -26,9 +26,18 @@ namespace BLL
         {
             orgname = orgname != null ? orgname.Trim() : "";
             password = password != null ? Md5.MD5_encrypt(password.Trim()) : "";
-            if (orgDAL.UpdateIPTime(orgname))//更新IP和登录时间
+            org org = orgDAL.LoginByName(orgname, password);
+
+            if (org != null)
             {
-                return orgDAL.LoginByName(orgname, password);
+                if (orgDAL.UpdateIPTime(orgname))//更新IP和登录时间
+                {
+                    return org;
+                }
+                else
+                {
+                    return null;
+                }
             }
             else
             {
@@ -88,6 +97,7 @@ namespace BLL
             if (IsBlankReg(org).Equals("ok"))
             {
                 org.OrgID = Guid.NewGuid();
+                org.OrgPwd = Md5.MD5_encrypt(org.OrgPwd);
                 org.RegisterTime = DateTime.Now;
                 org.LastLogin = DateTime.Now;
                 org.OrgIP = GetClientIP.GetIP();
@@ -100,6 +110,14 @@ namespace BLL
             }
         }
         #endregion 社团组织注册
+
+        #region 获取图片路径
+
+        public string SelectPathByOrgID(Guid orgid)
+        {
+            return orgDAL.SelectOrgByID(orgid).OrgPic;
+        }
+        #endregion 获取图片路径
 
         #region 判断社团/组织名称是否已被注册
         /// <summary>

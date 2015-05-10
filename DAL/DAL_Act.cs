@@ -81,6 +81,15 @@ namespace DAL
 
         #region 查询
         /// <summary>
+        /// 获得所有act实体
+        /// </summary>
+        /// <returns></returns>
+        public IQueryable<activity> SelectAllAct()
+        {
+            var query = fwDataContext.activity.Where(a => a.State == 0);
+            return ifQueryAll(query);
+        }
+        /// <summary>
         /// 通过ActID获得act实体
         /// </summary>
         /// <param name="actid"></param>

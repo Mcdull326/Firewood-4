@@ -109,13 +109,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\ActController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OrgController.cs" />
+    <Compile Include="Controllers\PicPoolController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\OrgRegForm.cs" />
+    <Compile Include="Models\PublishForm.cs" />
     <Compile Include="Models\RegisterForm.cs" />
     <Compile Include="Models\UpdateInfoForm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -135,7 +138,12 @@
     <Content Include="css\form.min.css">
       <DependentUpon>form.css</DependentUpon>
     </Content>
-    <Content Include="css\index.min.css" />
+    <Content Include="css\index.css">
+      <DependentUpon>index.less</DependentUpon>
+    </Content>
+    <Content Include="css\index.min.css">
+      <DependentUpon>index.css</DependentUpon>
+    </Content>
     <Content Include="css\main.css">
       <DependentUpon>main.css.bundle</DependentUpon>
     </Content>
@@ -163,8 +171,10 @@
     <Content Include="img\poster\ghy-tm.jpg" />
     <Content Include="img\title.png" />
     <Content Include="img\vote-on.png" />
+    <Content Include="js\bootstrap-datepicker.min.js" />
     <Content Include="js\bootstrap.js" />
     <Content Include="js\common.js" />
+    <Content Include="js\datepicker.config.js" />
     <Content Include="js\jquery.js" />
     <Content Include="js\main.js">
       <DependentUpon>main.js.bundle</DependentUpon>
@@ -173,6 +183,7 @@
       <DependentUpon>main.js</DependentUpon>
     </Content>
     <Content Include="js\modernizr-2.8.3.js" />
+    <Content Include="js\Publish.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -224,6 +235,10 @@
     <Content Include="css\common.css.map">
       <DependentUpon>common.css</DependentUpon>
     </Content>
+    <Content Include="css\index.less" />
+    <Content Include="css\index.css.map">
+      <DependentUpon>index.css</DependentUpon>
+    </Content>
     <None Include="Properties\PublishProfiles\web.config.pubxml" />
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\User\Register.cshtml" />
@@ -235,6 +250,8 @@
     <Content Include="Views\Org\Index.cshtml" />
     <Content Include="Views\Shared\Org_Layout.cshtml" />
     <Content Include="Views\Org\Register.cshtml" />
+    <Content Include="Views\Org\Publish.cshtml" />
+    <Content Include="Views\Act\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BLL\BLL.csproj">

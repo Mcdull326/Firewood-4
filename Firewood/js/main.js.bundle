@@ -12,6 +12,8 @@
   <files>
     <file>/js/jquery.js</file>
     <file>/js/bootstrap.js</file>
+    <file>/js/bootstrap-datepicker.min.js</file>
+    <file>/js/datepicker.config.js</file>
     <file>/js/jquery.request.js</file>
   <file>/js/common.js</file>
   </files>
